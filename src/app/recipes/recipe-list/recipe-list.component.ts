@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Recipe} from '../recipe.model'
+import { RecipeService } from '../recipe.service';
+
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -7,14 +11,15 @@ import {Recipe} from '../recipe.model'
   encapsulation: ViewEncapsulation.None
 })
 export class RecipeListComponent implements OnInit {
- recipes: Recipe[]=[
-   new Recipe("A Test Recipe","This is a simplay a test","http://www.seriouseats.com/recipes/assets_c/2016/12/20161201-crispy-roast-potatoes-29-thumb-1500xauto-435281.jpg")
- , new Recipe("A Test Recipe","This is a simplay a test","http://www.seriouseats.com/recipes/assets_c/2016/12/20161201-crispy-roast-potatoes-29-thumb-1500xauto-435281.jpg")
- 
-  ];
-  constructor() { }
+ recipes: Recipe[];
+
+  
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.recipes=this.recipeService.getRecipes();
   }
-
+  onRecipeSelected(recipe: Recipe){
+    this.recipeService.RecipeSelected.emit(recipe);
+  }
 }
