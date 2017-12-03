@@ -8,7 +8,7 @@ import { RecipeService } from './recipe.service';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
   encapsulation: ViewEncapsulation.None,
-  providers:[RecipeService]
+  
 })
 export class RecipesComponent implements OnInit {
  
